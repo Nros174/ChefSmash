@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement; // ต้องเพิ่มสำหรั
 
 public class SelectPlayer : MonoBehaviour
 {
+    [Header("Chef")]
     public GameObject[] skins_player1; // อาร์เรย์ของตัวละครที่สามารถเลือกได้สำหรับผู้เล่น 1
     public GameObject[] skins_player2; // อาร์เรย์ของตัวละครที่สามารถเลือกได้สำหรับผู้เล่น 2
+ 
     private int selectedCharacter_Player1; // ตัวแปรเก็บค่าตัวละครที่เลือกสำหรับผู้เล่น 1
     private int selectedCharacter_Player2; // ตัวแปรเก็บค่าตัวละครที่เลือกสำหรับผู้เล่น 2
 

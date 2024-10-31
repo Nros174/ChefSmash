@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-
+    [Header("MainMenu_HowToPlay")]
     public GameObject[] Panel;
     public Image howtoplayImage;
     public Sprite[] howtoplaySprite;
@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour
         // ใช้ชื่อที่ถูกต้องตามที่ประกาศใน AudioManager
         // audioManager.PlaySFX(audioManager.take_hit_defening);
         SceneManager.LoadScene("Select_ChefSmash");
+        PlayerPrefs.DeleteAll();
     }
 
     public void howtoplay()

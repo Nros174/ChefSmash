@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement; // นำเข้า namespace สำหร�
 
 public class CustomerManager : MonoBehaviour // สร้างคลาส CustomerManager ที่สืบทอดมาจาก MonoBehaviour
 {
+    [Header("Customer")]
     public int health_player1 = 5; // ตัวแปรสำหรับเก็บพลังชีวิตของ Player1
     public int health_player2 = 5; // ตัวแปรสำหรับเก็บพลังชีวิตของ Player2
 
@@ -25,9 +26,13 @@ public class CustomerManager : MonoBehaviour // สร้างคลาส Cust
     public GameObject VictoryPanel; // GameObject สำหรับแสดง Victory Panel
     public Sprite[] ImagesWinner; // ImagesWinner เป็นอาร์เรย์ภาพของตัวละคร
     public Image Winer; // Winer เป็นตัวแปร Image สำหรับเก็บ sprite ของตัวละครที่จะแสดง
+    private TimerController timerController; // อ้างอิง TimerController
+    private Launcher launcher; // อ้างอิง Launcher
 
     void Awake() // ฟังก์ชันที่เรียกเมื่อเริ่มต้น
     {
+        timerController = FindObjectOfType<TimerController>(); // ค้นหา TimerController
+        launcher = FindObjectOfType<Launcher>(); // ค้นหา Launcher
         health_player1 = 5; // ตั้งค่าเริ่มต้นพลังชีวิตของ Player1
         health_player2 = 5; // ตั้งค่าเริ่มต้นพลังชีวิตของ Player2
     }
@@ -69,13 +74,18 @@ public class CustomerManager : MonoBehaviour // สร้างคลาส Cust
 
     private void Victory() // ฟังก์ชันตรวจสอบสถานะการชนะ
     {
+
         if (health_player1 <= 0) // ถ้าพลังชีวิตของ Player1 <= 0
         {
+            timerController.StopTimer(); // หยุดนาฬิกา
+            launcher.DisablePlayerLaunch();
             Winer.sprite = ImagesWinner[characterIndex_Player2]; // แสดง sprite ของผู้ชนะ Player2
             VictoryPanel.SetActive(true); // แสดง VictoryPanel
         }
         else if (health_player2 <= 0) // ถ้าพลังชีวิตของ Player2 <= 0
         {
+            timerController.StopTimer(); // หยุดนาฬิกา
+            launcher.DisablePlayerLaunch();
             Winer.sprite = ImagesWinner[characterIndex_Player1]; // แสดง sprite ของผู้ชนะ Player1
             VictoryPanel.SetActive(true); // แสดง VictoryPanel
         }

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SelectPlayerManager : MonoBehaviour
 {
+    [Header("Player1")]
     public GameObject[] playerPrefabs_player1; // อาร์เรย์ของตัวละครที่สามารถเลือกได้สำหรับผู้เล่น 1
-    public GameObject[] playerPrefabs_player2; // อาร์เรย์ของตัวละครที่สามารถเลือกได้สำหรับผู้เล่น 2   
-
     private int characterIndex_Player1; // ตัวแปรเก็บค่าตัวละครที่เลือกสำหรับผู้เล่น 1
+    
+    [Header("Player2")]
     private int characterIndex_Player2; // ตัวแปรเก็บค่าตัวละครที่เลือกสำหรับผู้เล่น 2
+    public GameObject[] playerPrefabs_player2; // อาร์เรย์ของตัวละครที่สามารถเลือกได้สำหรับผู้เล่น 2   
 
     // กำหนดตำแหน่งแยกเป็นค่า X, Y, Z
     public float positionX_Player1 = -2f; // ตำแหน่งของผู้เล่น 1

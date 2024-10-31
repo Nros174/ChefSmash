@@ -9,7 +9,6 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
     private CustomerManager customerManager; // อ้างอิง CustomerManager เพื่อเข้าถึง health_player1 และ health_player2
     private TimerController timerController; // อ้างอิง TimerController
     private Launcher launcher; // อ้างอิง Launcher
-
     public TurnState state; // ตัวแปรสำหรับเก็บสถานะเทิร์น
 
     void Start() // ฟังก์ชันที่เรียกเมื่อเริ่มต้น
@@ -32,12 +31,6 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
         launcher.EnablePlayer1Launch(); // เปิดใช้งานการโยนของ Player1
     }
 
-    private void OnWeaponThrownByPlayer1() // ฟังก์ชันที่จะถูกเรียกเมื่อ Player1 โยนอาวุธ
-    {
-        timerController.StopTimer(); // หยุดนาฬิกา
-        state = TurnState.Player2_Turn; // เปลี่ยนสถานะเป็นเทิร์นของ Player2
-        Player2_Turn(); // เรียกฟังก์ชันสำหรับเทิร์น Player2
-    }
 
     public void Player2_Turn() // ฟังก์ชันสำหรับเทิร์นของ Player2
     {
@@ -48,10 +41,4 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
         launcher.EnablePlayer2Launch(); // เปิดใช้งานการโยนของ Player2
     }
 
-    // private void OnWeaponThrownByPlayer2() // ฟังก์ชันที่จะถูกเรียกเมื่อ Player2 โยนอาวุธ
-    // {
-    //     timerController.StopTimer(); // หยุดนาฬิกา
-    //     state = TurnState.Player1_Turn; // เปลี่ยนสถานะเป็นเทิร์นของ Player1
-    //     Player1_Turn(); // เรียกฟังก์ชันสำหรับเทิร์น Player1
-    // }
 }

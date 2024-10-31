@@ -4,6 +4,12 @@ using UnityEngine; // นำเข้า namespace สำหรับ UnityEngin
 using UnityEngine.UI;
 public class Launcher : MonoBehaviour // สร้างคลาส Launcher ที่สืบทอดมาจาก MonoBehaviour
 {
+    [Header("Launcher")]
+    public float maxLaunchSpeed = 20f; // ความเร็วสูงสุดที่สามารถปล่อยอาวุธได้
+    public float chargeRate = 5f; // อัตราการชาร์จความเร็วในการโยน
+    private float currentLaunchSpeed; // ตัวแปรสำหรับเก็บความเร็วปัจจุบันในการโยนอาวุธ
+    private TimerController timerController; // อ้างอิง TimerController
+
     [Header("Player1")] // เพิ่ม header ใน Inspector สำหรับ Player1
     public GameObject[] projectile_player1; // สร้าง array สำหรับอาวุธของ Player1
     public Transform launchPointPlayer1; // สร้าง Transform สำหรับจุดปล่อยอาวุธของ Player1
@@ -16,14 +22,9 @@ public class Launcher : MonoBehaviour // สร้างคลาส Launcher �
     private int characterIndex_Player2; // ตัวแปรสำหรับเก็บ index ของตัวละคร Player2
     private bool canLaunchPlayer2; // ตรวจสอบว่าสามารถโยนอาวุธได้หรือไม่
 
-    [Header("UI")]
+    [Header("UI_Power")]
     public Image[] power_image; // timer_linear_image[0] สำหรับ Player1, timer_linear_image[1] สำหรับ Player2
     public GameObject[] Power_Holder;
-
-    private TimerController timerController; // อ้างอิง TimerController
-    public float maxLaunchSpeed = 20f; // ความเร็วสูงสุดที่สามารถปล่อยอาวุธได้
-    public float chargeRate = 5f; // อัตราการชาร์จความเร็วในการโยน
-    private float currentLaunchSpeed; // ตัวแปรสำหรับเก็บความเร็วปัจจุบันในการโยนอาวุธ
 
     void Start() // ฟังก์ชันเริ่มต้น
     {
@@ -40,14 +41,7 @@ public class Launcher : MonoBehaviour // สร้างคลาส Launcher �
             if (canLaunchPlayer1 || canLaunchPlayer2) // ตรวจสอบว่ามีการอนุญาตให้โยน
             {
                 timerController.StopTimer(); // หยุดนาฬิกา
-                if (canLaunchPlayer1)
-                {
-                    Power(0);
-                }
-                else
-                {
-                    Power(1);
-                }
+                Power(canLaunchPlayer1 ? 0 : 1);
 
                 currentLaunchSpeed += chargeRate * Time.deltaTime; // เพิ่มความเร็วการโยนตามเวลา
                 currentLaunchSpeed = Mathf.Clamp(currentLaunchSpeed, 0, maxLaunchSpeed); // จำกัดความเร็วไม่ให้เกิน maxLaunchSpeed
@@ -98,5 +92,10 @@ public class Launcher : MonoBehaviour // สร้างคลาส Launcher �
     public void EnablePlayer2Launch() // ฟังก์ชันเปิดใช้งานการโยนของ Player2
     {
         canLaunchPlayer2 = true; // อนุญาตให้โยนอาวุธ Player2
+    }
+    public void DisablePlayerLaunch() // ฟังก์ชันปิดใช้งานการโยนของ Player
+    {
+        canLaunchPlayer1 = false; // ไม่อนุญาตให้โยนอาวุธ Player1
+        canLaunchPlayer2 = false; // ไม่อนุญาตให้โยนอาวุธ Player2
     }
 }

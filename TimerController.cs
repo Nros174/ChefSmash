@@ -5,11 +5,14 @@ using UnityEngine.UI; // นำเข้า namespace สำหรับ UI
 
 public class TimerController : MonoBehaviour // สร้างคลาส TimerController ที่สืบทอดมาจาก MonoBehaviour
 {
-    public Image[] timer_linear_image; // timer_linear_image[0] สำหรับ Player1, timer_linear_image[1] สำหรับ Player2
-    public GameObject[] Timer_Holder; // ตัวแปรสำหรับเก็บ GameObjects ที่ใช้แสดง Timer
+    [Header("TimeManager")]
     public float max_time = 5.0f; // กำหนดค่า max_time ที่นี่
     private int currentPlayerIndex; // ตัวแปรสำหรับเก็บเลข index ของผู้เล่น (0 สำหรับ Player1, 1 สำหรับ Player2)
     private GameStateController state; // เปลี่ยนชื่อเป็น state เพื่อใช้ใน ChangeTurn()
+
+    [Header("Bar")]
+    public Image[] timer_linear_image; // timer_linear_image[0] สำหรับ Player1, timer_linear_image[1] สำหรับ Player2
+    public GameObject[] Timer_Holder; // ตัวแปรสำหรับเก็บ GameObjects ที่ใช้แสดง Timer
 
     void Start() // ฟังก์ชันเริ่มต้น
     {
@@ -20,7 +23,6 @@ public class TimerController : MonoBehaviour // สร้างคลาส Time
     public void StartTimer(int playerIndex) // ฟังก์ชันเริ่มจับเวลา
     {
         currentPlayerIndex = playerIndex; // ตั้งค่า index ของผู้เล่น
-
         // แสดง Timer ของผู้เล่นที่ระบุ และซ่อน Timer ของอีกผู้เล่น
         Timer_Holder[0].SetActive(playerIndex == 0); // แสดง/ซ่อน Timer ของ Player1
         Timer_Holder[1].SetActive(playerIndex == 1); // แสดง/ซ่อน Timer ของ Player2
