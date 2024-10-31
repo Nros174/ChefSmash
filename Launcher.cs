@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Launcher : MonoBehaviour // สร้างคลาส Launcher ที่สืบทอดมาจาก MonoBehaviour
 {
     [Header("Launcher")]
-    public float maxLaunchSpeed = 20f; // ความเร็วสูงสุดที่สามารถปล่อยอาวุธได้
+    public float maxLaunchSpeed = 15f; // ความเร็วสูงสุดที่สามารถปล่อยอาวุธได้
     public float chargeRate = 5f; // อัตราการชาร์จความเร็วในการโยน
     private float currentLaunchSpeed; // ตัวแปรสำหรับเก็บความเร็วปัจจุบันในการโยนอาวุธ
     private TimerController timerController; // อ้างอิง TimerController

@@ -10,6 +10,7 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
     private TimerController timerController; // อ้างอิง TimerController
     private Launcher launcher; // อ้างอิง Launcher
     public TurnState state; // ตัวแปรสำหรับเก็บสถานะเทิร์น
+    public PlayerCollision playerCollision;
 
     void Start() // ฟังก์ชันที่เรียกเมื่อเริ่มต้น
     {
@@ -17,7 +18,7 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
         customerManager = FindObjectOfType<CustomerManager>(); // ค้นหา CustomerManager
         timerController = FindObjectOfType<TimerController>(); // ค้นหา TimerController
         launcher = FindObjectOfType<Launcher>(); // ค้นหา Launcher
-
+        playerCollision = FindObjectOfType<PlayerCollision>();
         state = TurnState.Player1_Turn; // ตั้งค่าเริ่มต้นเป็นเทิร์นของ Player1
         Player1_Turn(); // เรียกฟังก์ชันสำหรับเทิร์น Player1
     }
@@ -28,6 +29,7 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
             return; // ออกจากฟังก์ชัน
 
         timerController.StartTimer(0); // เริ่มจับเวลาสำหรับ Player1
+        playerCollision.ChangeCollided();
         launcher.EnablePlayer1Launch(); // เปิดใช้งานการโยนของ Player1
     }
 
@@ -38,6 +40,7 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
             return; // ออกจากฟังก์ชัน
 
         timerController.StartTimer(1); // เริ่มจับเวลาสำหรับ Player2
+        playerCollision.ChangeCollided();
         launcher.EnablePlayer2Launch(); // เปิดใช้งานการโยนของ Player2
     }
 
