@@ -26,6 +26,7 @@ public class MenuController : MonoBehaviour
         // audioManager.PlaySFX(audioManager.take_hit_defening);
         SceneManager.LoadScene("Select_ChefSmash");
         PlayerPrefs.DeleteAll();
+
     }
 
     public void howtoplay()
@@ -39,26 +40,26 @@ public class MenuController : MonoBehaviour
     }
 
     public void NextSprite()
-{
-    if (howtoplaySprite.Length > 0)
     {
-        currentSpriteIndex++; // เพิ่มดัชนี
-        
-        // ตรวจสอบว่าเป็นสไปรท์ตัวสุดท้าย
-        if (currentSpriteIndex >= howtoplaySprite.Length)
+        if (howtoplaySprite.Length > 0)
         {
-            // ปิด Panel[1] และกลับไปที่ Panel[0]
-            Panel[1].SetActive(false);
-            Panel[0].SetActive(true);
-            currentSpriteIndex = 0; // รีเซ็ตดัชนีเป็น 0
-        }
-        else
-        {
-            // ถ้ายังไม่ถึงสไปรท์ตัวสุดท้าย ให้เปลี่ยนสไปรท์
-            howtoplayImage.sprite = howtoplaySprite[currentSpriteIndex]; // เปลี่ยนสไปรท์เป็นสไปรท์ปัจจุบัน
+            currentSpriteIndex++; // เพิ่มดัชนี
+
+            // ตรวจสอบว่าเป็นสไปรท์ตัวสุดท้าย
+            if (currentSpriteIndex >= howtoplaySprite.Length)
+            {
+                // ปิด Panel[1] และกลับไปที่ Panel[0]
+                Panel[1].SetActive(false);
+                Panel[0].SetActive(true);
+                currentSpriteIndex = 0; // รีเซ็ตดัชนีเป็น 0
+            }
+            else
+            {
+                // ถ้ายังไม่ถึงสไปรท์ตัวสุดท้าย ให้เปลี่ยนสไปรท์
+                howtoplayImage.sprite = howtoplaySprite[currentSpriteIndex]; // เปลี่ยนสไปรท์เป็นสไปรท์ปัจจุบัน
+            }
         }
     }
-}
 
 
     public void QuitGame()

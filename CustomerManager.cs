@@ -77,15 +77,17 @@ public class CustomerManager : MonoBehaviour // สร้างคลาส Cust
 
         if (health_player1 <= 0) // ถ้าพลังชีวิตของ Player1 <= 0
         {
-            timerController.StopTimer(); // หยุดนาฬิกา
-            launcher.DisablePlayerLaunch();
+            timerController.StopTimer_player1(); // หยุดนาฬิกา
+            timerController.StopTimer_player2(); // หยุดนาฬิกา
+            launcher.DisablePlayer1Launch();
             Winer.sprite = ImagesWinner[characterIndex_Player2]; // แสดง sprite ของผู้ชนะ Player2
             VictoryPanel.SetActive(true); // แสดง VictoryPanel
         }
         else if (health_player2 <= 0) // ถ้าพลังชีวิตของ Player2 <= 0
         {
-            timerController.StopTimer(); // หยุดนาฬิกา
-            launcher.DisablePlayerLaunch();
+            timerController.StopTimer_player1(); // หยุดนาฬิกา
+            timerController.StopTimer_player2(); // หยุดนาฬิกา
+            launcher.DisablePlayer2Launch();
             Winer.sprite = ImagesWinner[characterIndex_Player1]; // แสดง sprite ของผู้ชนะ Player1
             VictoryPanel.SetActive(true); // แสดง VictoryPanel
         }

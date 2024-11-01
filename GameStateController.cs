@@ -9,9 +9,10 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
     private CustomerManager customerManager; // อ้างอิง CustomerManager เพื่อเข้าถึง health_player1 และ health_player2
     private TimerController timerController; // อ้างอิง TimerController
     private Launcher launcher; // อ้างอิง Launcher
-    public TurnState state; // ตัวแปรสำหรับเก็บสถานะเทิร์น
-    public PlayerCollision playerCollision;
-
+    
+    private PlayerCollision playerCollision;
+    private Skill skill;
+public TurnState state; // ตัวแปรสำหรับเก็บสถานะเทิร์น
     void Start() // ฟังก์ชันที่เรียกเมื่อเริ่มต้น
     {
         // ค้นหา CustomerManager, TimerController และ Launcher ใน Scene
@@ -20,6 +21,7 @@ public class GameStateController : MonoBehaviour // สร้างคลาส 
         launcher = FindObjectOfType<Launcher>(); // ค้นหา Launcher
         playerCollision = FindObjectOfType<PlayerCollision>();
         state = TurnState.Player1_Turn; // ตั้งค่าเริ่มต้นเป็นเทิร์นของ Player1
+        skill = FindObjectOfType<Skill>();
         Player1_Turn(); // เรียกฟังก์ชันสำหรับเทิร์น Player1
     }
 
